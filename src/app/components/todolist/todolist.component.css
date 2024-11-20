@@ -1,0 +1,12 @@
+ul{
+    padding: 2%;
+}
+
+.chargement{
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 10px;
+}

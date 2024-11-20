@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { Task } from '../../class/task.model';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
+import { TodolistService } from '../../services/todolist.service';
 
 @Component({
   selector: 'app-task',
@@ -10,8 +11,10 @@ import { AsyncPipe, DatePipe } from '@angular/common';
   imports: [
     FormsModule,
     MatButtonModule,
-    AsyncPipe
+    AsyncPipe,
+    CommonModule
   ],
+  providers: [DatePipe],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
@@ -24,7 +27,7 @@ export class TaskComponent {
   miseAJourComplete = new EventEmitter<boolean>();
 
 
-  constructor(private datePipe : DatePipe) {}
+  constructor(private datePipe : DatePipe, private todolistService : TodolistService) {}
 
 
   getComplete(): string {
@@ -53,7 +56,7 @@ export class TaskComponent {
   }
 
   toggleComplete() : void {
-    this.task.completed = !this.task.completed
+    this.todolistService.toggleComplete(this.task.id)
     this.miseAJourComplete.emit(this.task.completed)
   }
 
@@ -66,7 +69,7 @@ export class TaskComponent {
   }
 
   formatDate(date: Date) : string | null {
-    return this.datePipe.transform(date, 'fullDate')
+    return this.datePipe.transform(date, 'longDate')
   }
 
 

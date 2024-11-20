@@ -7,7 +7,7 @@
         <input type="text" [(ngModel)]="task.title">
     </div>
     <div class="col">
-        Créée le {{formatDate(task.created) }}
+        Créée le {{task.created | date:"dd/MM/y hh:mm" }}
     </div>
     <div class="col">
         Status : <span [class]="getBadgeVariant()">{{getComplete()}}</span>
