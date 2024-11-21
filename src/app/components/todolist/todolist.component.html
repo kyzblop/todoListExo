@@ -1,49 +1,49 @@
 <ul>
-    <!--
+  <!--
     <app-task [name]="name1" [task.completed]="taskComplete1" (miseAJourComplete)="majCompteur($event)"></app-task>
     <app-task [name]="name2" [task.completed]="taskComplete2" (miseAJourComplete)="majCompteur($event)"></app-task>
     <app-task [name]="name3" [task.completed]="taskComplete3" (miseAJourComplete)="majCompteur($event)"></app-task>
     -->
 
-    
-    
-    @if(tasks.length > 0) {
-        @for (task of tasks; track task.id) {
-            <app-task [task]="task" (miseAJourComplete)="majCompteur($event)"></app-task>
-        }
-    } @else {
-        <p>Pas de tâches à faire</p>
-    }
+  @if(tasks.length > 0) { @for (task of tasks; track task.id) {
+  <app-task [task]="task" (miseAJourComplete)="majCompteur($event)"></app-task>
+  } } @else {
+  <p>Pas de tâches à faire</p>
+  } @if(chargementList) {
+  <div class="chargement">
+    <p>Chargement de la liste</p>
+    <!-- Spinner de chargement -->
+    <span class="spinner-border text-primary" role="status"></span>
+  </div>
 
-    @if(chargementList) {
-        <div class="chargement">
-            <p>Chargement de la liste</p>
-            <span class="spinner-border text-primary" role="status"></span>
-        </div>
-        
-    }
+  }
 
-    <p>{{ promesseRemplirTaches | async }}</p>
+  <p>{{ promesseRemplirTaches | async }}</p>
 
-    @if(completion == 0) {
-        <p>Il serait temps de commencer, flemmard</p>
-    } @else if(completion < 50 ) {
-        <p>Ca commence</p>
-    } @else if(completion == 50) {
-        <p>La moitié !</p>
-    } @else if(completion < 100) {
-        <p>Tu y es presque</p>
-    } @else {
-        <p>Terminé ! Bravo</p>
-    }
+  @if(completion == 0) {
+  <p>Il serait temps de commencer, flemmard</p>
+  } @else if(completion < 50 ) {
+  <p>Ca commence</p>
+  } @else if(completion == 50) {
+  <p>La moitié !</p>
+  } @else if(completion < 100) {
+  <p>Tu y es presque</p>
+  } @else {
+  <p>Terminé ! Bravo</p>
+  }
 
-    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success" [style]="getCompletion()">{{completion | number:'1.0-2'}}%</div>
+  <div
+    class="progress"
+    role="progressbar"
+    aria-label="Example with label"
+    aria-valuenow="25"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    <div class="progress-bar bg-success" [style]="getCompletion()">
+      {{ completion | number : "1.0-2" }}%
     </div>
+  </div>
 
-
-    
-
-    <p>Nombre de tâches terminées : {{compteur}}</p>
+  <p>Nombre de tâches terminées : {{ compteur }}</p>
 </ul>
-

@@ -6,18 +6,16 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  isClicked: boolean = false;
 
-  isAuth: boolean = false
-
-  constructor(private auth : AuthService) {
-    this.isAuth = auth.isAuth
-  }
+  constructor(public auth: AuthService) {}
 
   connexion() {
-    this.auth.login()
+    this.auth.login();
+    console.log('connexion ...');
+    this.isClicked = true;
   }
-
 }

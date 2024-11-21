@@ -1,14 +1,9 @@
-.row {
-  display: flex;
-  flex-direction: row;
-}
+.page {
+  margin: 2%;
 
-.col {
   display: flex;
   flex-direction: column;
 
   justify-content: center;
   align-items: center;
-
-  gap: 5px;
 }

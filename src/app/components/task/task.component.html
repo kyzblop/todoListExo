@@ -1,19 +1,31 @@
 <li [class]="getItemVariant()" class="row">
-    <div class="col">
-        <p>Tâche à faire : {{task.title}}</p>
+  <div class="col">
+    <p>Tâche à faire : {{ task.title }}</p>
+  </div>
+  <div class="col">
+    <span>Modifier la tâche : </span>
+    <input type="text" [(ngModel)]="task.title" />
+  </div>
+  <div class="col">Créée le {{ task.created | date : "dd/MM/y hh:mm" }}</div>
+  <div class="col">
+    <div>
+      Status : <span [class]="getBadgeVariant()">{{ getComplete() }}</span>
     </div>
-    <div class="col">
-        <span>Modifier la tâche : </span> 
-        <input type="text" [(ngModel)]="task.title">
-    </div>
-    <div class="col">
-        Créée le {{task.created | date:"dd/MM/y hh:mm" }}
-    </div>
-    <div class="col">
-        Status : <span [class]="getBadgeVariant()">{{getComplete()}}</span>
-        <button mat-flat-button (click)="toggleComplete()">{{getButtonText()}}</button>
-    </div>
-    
-</li>
-<br>
 
+    <button
+      mat-flat-button
+      style="background-color: rgba(10, 88, 197, 0.756)"
+      (click)="toggleComplete()"
+    >
+      {{ getButtonText() }}
+    </button>
+    <button
+      mat-flat-button
+      style="background-color: rgb(19, 173, 157)"
+      [routerLink]="['/todolist', task.id]"
+    >
+      Voir de détail
+    </button>
+  </div>
+</li>
+<br />

@@ -1,0 +1,16 @@
+<div class="card text-center">
+  <div class="card-header">
+    @if(task?.completed) {
+    <p>Tâche complétée</p>
+    } @else {
+    <p>Tâche non complétée</p>
+    }
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ task?.title }}</h5>
+    <p class="card-text">{{ task?.description }}</p>
+  </div>
+  <div class="card-footer text-body-secondary">
+    {{ task?.created | date : "fullDate" }}
+  </div>
+</div>

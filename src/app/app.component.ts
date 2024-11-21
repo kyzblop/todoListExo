@@ -1,21 +1,35 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavComponent } from './components/nav/nav.component';
-import { TodolistComponent } from './components/todolist/todolist.component';
+import { Location } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    NavComponent,
-    TodolistComponent
-  ],
+  imports: [RouterOutlet, NavComponent],
   providers: [],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'todoListExo';
 
+  is404: boolean = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // let routeString = window.location.href;
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        let currentUrl = this.router.url;
+
+        if (currentUrl == '/404') {
+          this.is404 = true;
+        }
+      });
+  }
 }
