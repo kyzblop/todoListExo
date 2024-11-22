@@ -5,11 +5,12 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { FormsModule } from '@angular/forms';
 import confetti from 'canvas-confetti';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-todolist',
   standalone: true,
-  imports: [TaskComponent, FormsModule, CommonModule],
+  imports: [TaskComponent, FormsModule, CommonModule, RouterLink],
   templateUrl: './todolist.component.html',
   styleUrl: './todolist.component.css',
 })
@@ -28,13 +29,14 @@ export class TodolistComponent {
       this.chargementList = true;
       setTimeout(() => {
         try {
-          this.tasks = todolistService.list;
-
+          this.getTasks();
           resolve('Les données sont bien récupérées');
           this.chargementList = false;
         } catch (error) {
           reject('Les données ne sont pas récupérées');
         }
+        this.compteur = this.tasks.filter((task) => task.completed).length;
+        this.completion = (this.compteur / this.tasks.length) * 100;
       }, 3000);
     });
   }
@@ -45,7 +47,9 @@ export class TodolistComponent {
     } else {
       this.compteur -= 1;
     }
+
     this.completion = (this.compteur / this.tasks.length) * 100;
+
     if (this.completion == 100) {
       confetti({
         particleCount: 100,
@@ -62,5 +66,11 @@ export class TodolistComponent {
 
   getCompletion(): string {
     return `width: ${this.completion}%`;
+  }
+
+  getTasks(): void {
+    this.todolistService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+    });
   }
 }

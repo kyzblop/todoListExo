@@ -24,7 +24,7 @@ export class TaskDetailsComponent implements OnInit {
     let stringId: string | null = this.route.snapshot.paramMap.get('id');
     let id: number = stringId == null ? -1 : +stringId;
 
-    let taskRecup = this.todoListService.list.find((task) => task.id == id);
+    let taskRecup = this.todoListService.getTaskById(id);
     if (taskRecup) {
       this.task = this.todoListService.getTaskById(id);
     } else {

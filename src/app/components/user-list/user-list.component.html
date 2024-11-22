@@ -1,0 +1,35 @@
+<h3>Liste des utilisateurs</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Team</th>
+      <th scope="col">Skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if(users){ @for(user of users ; track user.id){
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.team }}</td>
+      <td>
+        @for(skill of user.skills ; track skill) {
+
+        <p>{{ skill }}</p>
+
+        }
+      </td>
+    </tr>
+    } }@else {
+    <p>La liste d'utilisateur n'est pas récupérée</p>
+    }
+  </tbody>
+</table>
+
+<button routerLink="/addUser">Ajouter un utilisateur</button>

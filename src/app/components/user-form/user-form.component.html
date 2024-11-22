@@ -1,0 +1,46 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="firstName" class="form-label">Firstname</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      required
+      formControlName="firstName"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Lastname</label>
+    <input
+      type="text"
+      class="form-control"
+      id="Lastname"
+      required
+      formControlName="lastName"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      required
+      formControlName="email"
+    />
+  </div>
+
+  <label for="team">Choisir la team</label>
+  <select id="team" class="form-select" required formControlName="team">
+    <option selected>Team Alpha</option>
+    <option>Team Beta</option>
+    <option>Team Omega</option>
+  </select>
+  <br />
+
+  <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">
+    Valider
+  </button>
+</form>

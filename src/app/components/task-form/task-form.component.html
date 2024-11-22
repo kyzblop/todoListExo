@@ -1,0 +1,36 @@
+<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+  <h3>Ajout d'une nouvelle tâche</h3>
+  <div class="mb-3">
+    <label for="title" class="form-label">Titre de la tâche</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      id="title"
+      ngModel
+      required
+      placeholder="Entrez le titre de la tâche"
+    />
+  </div>
+  <div class="mb-3">
+    <select class="form-select" name="completed" ngModel required>
+      <option [value]="true">Tâche complétée</option>
+      <option [value]="false" selected>Tâche incomplète</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description de la tâche</label>
+    <input
+      type="text"
+      class="form-control"
+      name="description"
+      id="description"
+      ngModel
+      required
+      placeholder="Entrez la description de la tâche"
+    />
+  </div>
+  <button type="submit" [disabled]="taskForm.invalid" class="btn btn-primary">
+    Valider
+  </button>
+</form>

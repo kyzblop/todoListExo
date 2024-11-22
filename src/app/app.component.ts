@@ -3,11 +3,12 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavComponent } from './components/nav/nav.component';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent],
+  imports: [RouterOutlet, NavComponent, ReactiveFormsModule],
   providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

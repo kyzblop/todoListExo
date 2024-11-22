@@ -13,7 +13,7 @@ export class AuthService {
     setTimeout(() => {
       this.isAuth = true;
       this.router.navigate(['todolist']);
-    }, 5000);
+    }, 2000);
   }
 
   logout() {
