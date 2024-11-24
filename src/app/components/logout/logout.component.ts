@@ -9,14 +9,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './logout.component.css',
 })
 export class LogoutComponent {
-  // isAuth: boolean = false
-
-  constructor(public auth: AuthService) {
-    // this.isAuth = auth.isAuth
-  }
+  constructor(public auth: AuthService) {}
 
   deconnexion() {
     this.auth.logout();
-    // this.isAuth = this.auth.isAuth
   }
 }

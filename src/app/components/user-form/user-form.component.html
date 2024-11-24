@@ -5,6 +5,7 @@
       type="text"
       class="form-control"
       id="firstName"
+      placeholder="Saisir le nom"
       required
       formControlName="firstName"
     />
@@ -16,6 +17,7 @@
       type="text"
       class="form-control"
       id="Lastname"
+      placeholder="Saisir le prénom"
       required
       formControlName="lastName"
     />
@@ -27,6 +29,7 @@
       type="email"
       class="form-control"
       id="email"
+      placeholder="Saisir l'email"
       required
       formControlName="email"
     />
@@ -38,6 +41,47 @@
     <option>Team Beta</option>
     <option>Team Omega</option>
   </select>
+  <br />
+
+  <div formArrayName="skills">
+    <ul>
+      @if (skills.length>0) {
+      <p>Liste des compétences</p>
+      @for (skill of skills.controls; track skill) {
+      <li formControlName="skill">{{ skill.value }}</li>
+      } }
+    </ul>
+  </div>
+
+  <form formArrayName="skills">
+    <label for="skill">Ajout d'une compétence</label>
+    <input
+      type="text"
+      class="form-control"
+      id="skill"
+      placeholder="Saisir une compétence"
+      formControlName="skill"
+      required
+    />
+    <br />
+    <button
+      type="submit"
+      [disabled]="skills.invalid"
+      class="btn btn-success"
+      (click)="addSkills()"
+    >
+      Ajouter une compétence
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      style="margin-left: 10px"
+      (click)="removeSkills()"
+    >
+      Supprimer la dernière compétence
+    </button>
+  </form>
+
   <br />
 
   <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">

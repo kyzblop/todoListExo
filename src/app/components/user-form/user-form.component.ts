@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -30,7 +31,7 @@ export class UserFormComponent {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       team: ['', [Validators.required]],
-      skills: [''],
+      skills: formBuilder.array([]),
     });
 
     this.userAjout = {
@@ -41,6 +42,7 @@ export class UserFormComponent {
       team: '',
       skills: [],
     };
+
   }
 
   onSubmit() {
@@ -48,5 +50,23 @@ export class UserFormComponent {
     this.userAjout.id = this.userService.getLastId() + 1;
     this.userService.addUser(this.userAjout);
     this.router.navigate(['users']);
+  }
+
+  get skills(): FormArray {
+    return this.userForm.get('skills') as FormArray;
+  }
+
+  addSkills(): void {
+    let skillGroup = this.formBuilder.group({
+      skill: ['', Validators.required],
+    });
+
+    this.skills.push(skillGroup);
+  }
+
+  removeSkills(): void {
+    if (this.skills.length > 0) {
+      this.skills.removeAt(this.skills.length - 1);
+    }
   }
 }

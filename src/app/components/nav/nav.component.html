@@ -1,15 +1,21 @@
-<ul>
-  <li routerLinkActive="active">
-    <a routerLink="/todolist">Liste des tâches à faire</a>
-  </li>
-
-  <li routerLinkActive="active">
-    <a routerLink="/users">Liste des utilisateurs</a>
-  </li>
-
-  <li routerLinkActive="active">
-    <a routerLink="/login">Se connecter</a>
-  </li>
-
-  <app-logout></app-logout>
-</ul>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLinkActive="active" routerLink="/todolist">Todolist</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/users">Utilisateurs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/login">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <app-logout></app-logout>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
